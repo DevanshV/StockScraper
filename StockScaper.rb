@@ -16,20 +16,20 @@ a.get('http://news.google.com/') do |page|
     end.submit
 
 #      puts "-- NASDAQ --" + " Google was searched for" + searchterm
-    search_result.body.to_s.scan(/NASDAQ:\W?(.*?)\W/).each do |ticker|
-        puts ticker
+    search_result.body.to_s.scan(/NASDAQ:\W?([A-Z]{3,10})\W/).each do |ticker|
+        puts "NASDAQ:"+ ticker.to_s
     end
-    search_result.body.to_s.scan(/Nasdaq:\W?(.*?)\W/).each do |ticker|
-        puts ticker
+    search_result.body.to_s.scan(/Nasdaq:\W?([A-Z]{3,10})\W/).each do |ticker|
+        puts "NASDAQ:"+ ticker.to_s
     end
-    search_result.body.to_s.scan(/NYSE:\W?(.*?)\W/).each do |ticker|
-        puts ticker
+    search_result.body.to_s.scan(/NYSE:\W?([A-Z]{3,10})\W/).each do |ticker|
+        puts "NYSE:" + ticker.to_s
     end
-    search_result.body.to_s.scan(/nyse:\W?(.*?)\W/).each do |ticker|
-        puts ticker
+    search_result.body.to_s.scan(/nyse:\W?([A-Z]{3,10})\W/).each do |ticker|
+        puts "NYSE:" + ticker.to_s
     end
-    search_result.body.to_s.scan(/b>:(.{1,10})\)/).each do |ticker|
-        puts ticker
+    search_result.body.to_s.scan(/b>:\W*?([A-Z]{3,10})\W?/).each do |ticker|
+        puts "TSE:" +ticker.to_s
     end
 
 #    search_result.body.to_s.scan(/\W(.{1,20})\sPharmaceuticals/).each do |ticker|
